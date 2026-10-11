@@ -1,0 +1,1 @@
+# Statics-Project-Fall2025
