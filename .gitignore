@@ -1,0 +1,10 @@
+# Raw NHANES data must NOT go to GitHub (project rule)
+data/raw/
+*.xpt
+*.XPT
+*.parquet
+# Python / Jupyter
+__pycache__/
+.ipynb_checkpoints/
+.venv/
+venv/
