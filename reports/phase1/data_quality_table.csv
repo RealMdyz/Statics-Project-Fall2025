@@ -1,0 +1,12 @@
+issue,n,decision,reason
+Duplicated SEQN,0,No action,Each participant appears once
+"Out-of-range values (age, sex, weight, sleep)",0,No action,All values within documented ranges
+Sleep hours missing (weekday or weekend),142,Excluded from analytic sample,Response variable cannot be computed
+SMQ020 refused (7) / don't know (9),14,Excluded from analytic sample,Smoking status cannot be determined
+SMQ020 blank,18,Excluded from analytic sample,Smoking status cannot be determined
+SMQ040 blank because SMQ020 = no,4878,Not missing - classified as never smoker,Skip pattern of the questionnaire
+"Sleep coded 2 (<3 h) or 14 (>=14 h), analytic sample",104,Kept and flagged; sensitivity analysis in Phase 5,Valid information about very short/long sleep; removing them would bias results
+SMD650 = 777 / 999,9,Set to missing in cigs_per_day,Not real cigarette counts
+'Some days' smokers without SMD650,15,Kept as current smokers; cigs_per_day missing,Likely did not smoke in past 30 days (skip)
+|Weekend - weekday sleep| >= 8 h,19,Kept,Plausible (e.g. shift work); no evidence of error
+"Age top-coded at 80, analytic sample",508,Kept,Real age unknown above 80; noted as limitation

@@ -73,6 +73,8 @@ def add_derived_variables(df: pd.DataFrame) -> pd.DataFrame:
     df["short_sleep"] = np.where(
         df["sleep_weekly"].notna(), (df["sleep_weekly"] < SHORT_SLEEP_HOURS).astype(float), np.nan
     )
+    # Cigarettes per day: 777 = refused, 999 = don't know -> missing
+    df["cigs_per_day"] = df["SMD650"].where(~df["SMD650"].isin([777, 999]))
     # Flag NHANES bottom/top codes: 2 = less than 3 h, 14 = 14 h or more
     df["sleep_coded_extreme"] = df["SLD012"].isin([2, 14]) | df["SLD013"].isin([2, 14])
     return df
