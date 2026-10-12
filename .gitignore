@@ -1,5 +1,6 @@
 # Raw NHANES data must NOT go to GitHub (project rule)
 data/raw/
+data/processed/
 *.xpt
 *.XPT
 *.parquet
