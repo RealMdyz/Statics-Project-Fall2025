@@ -101,3 +101,30 @@ def build_analytic_sample(df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFrame]
     flow = pd.DataFrame(steps, columns=["step", "n_remaining"])
     flow["n_excluded"] = (-flow["n_remaining"].diff()).fillna(0).astype(int)
     return current.reset_index(drop=True), flow
+
+
+# ---------------------------------------------------------------------------
+# Weighted descriptive statistics (NHANES sampling weights)
+# ---------------------------------------------------------------------------
+def weighted_mean(x: pd.Series, w: pd.Series) -> float:
+    """Sum(w * x) / Sum(w), ignoring rows where x is missing."""
+    mask = x.notna() & w.notna()
+    return float(np.average(x[mask], weights=w[mask]))
+
+
+def weighted_quantile(x: pd.Series, w: pd.Series, q: float) -> float:
+    """
+    Weighted quantile: the value below which a share q of the total weight lies.
+    Each person counts as many times as the number of people they represent.
+    """
+    mask = x.notna() & w.notna()
+    xs, ws = x[mask].to_numpy(), w[mask].to_numpy()
+    order = np.argsort(xs)
+    xs, ws = xs[order], ws[order]
+    cum = np.cumsum(ws) / ws.sum()
+    return float(xs[np.searchsorted(cum, q)])
+
+
+def weighted_share(condition: pd.Series, w: pd.Series) -> float:
+    """Weighted proportion of rows where condition is True."""
+    return float(w[condition].sum() / w.sum())

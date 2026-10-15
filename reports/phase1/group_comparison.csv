@@ -1,0 +1,4 @@
+group,n,sleep_mean,sleep_sd,sleep_median,sleep_q1,sleep_q3,short_sleep_pct,sleep_mean_w,short_sleep_pct_w,age_mean,male_pct
+never,4823,7.95,1.43,8.0,7.14,8.71,17.91,7.95,16.75,48.91,39.6
+former,2020,7.88,1.53,8.0,7.0,8.79,20.1,7.87,20.34,59.87,51.93
+current,1153,7.72,1.77,7.93,6.64,8.86,28.19,7.72,27.68,51.53,53.17
